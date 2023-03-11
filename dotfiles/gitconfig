@@ -1,26 +1,24 @@
 [alias]
-	current-branch-name = !git branch | grep -e '^\\* ' | sed -e 's/^\\* //g'
-	force-pull = !git fetch && git reset --hard origin/$(git current-branch-name)
-	logg = log --graph --pretty=oneline
+    current-branch-name = !git branch | grep -e '^\\* ' | sed -e 's/^\\* //g'
+    force-pull = !git fetch && git reset --hard origin/$(git current-branch-name)
+    logg = log --graph --pretty=oneline
 [color]
-	ui = auto
-[commit]
-	template = ~/.gitmessage
+    ui = auto
 [core]
-	autocrlf = input
-	editor = emacs
-	excludesfile = ~/.gitignore_global
-	ignorecase = false
-	symlinks = true
+    autocrlf = input
+    editor = emacs
+    excludesfile = ~/.gitignore_global
+    ignorecase = false
+    symlinks = true
 [init]
-	defaultBranch = master
+    defaultBranch = master
 [merge]
-	ff = false
+    ff = false
 [pull]
-	ff = only
+    ff = only
 [push]
-	default = simple
+    default = simple
 [user]
-	email = 29905556+gorbyr@users.noreply.github.com
-	name = yan
-	username = gorbyr
+    email = 29905556+gorbyr@users.noreply.github.com
+    name = yan
+    username = gorbyr
