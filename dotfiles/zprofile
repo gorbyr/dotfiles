@@ -1,0 +1,44 @@
+# path
+export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+
+# Homebrew
+type /opt/homebrew/bin/brew &>/dev/null && eval "$(/opt/homebrew/bin/brew shellenv)"
+
+# Node
+[ -d "$HOME/.nodenv/bin" ] && PATH="$HOME/.nodenv/bin:$PATH"
+type nodenv &>/dev/null && eval "$(nodenv init -)"
+
+# Flutter
+type ghq &>/dev/null && [ -d "$(ghq root)/github.com/flutter/flutter/bin" ] &&
+  PATH="$(ghq root)/github.com/flutter/flutter/bin:$PATH"
+
+# Android SDK
+if [ -d "$HOME/Library/Android/sdk" ]; then
+  export ANDROID_HOME="$HOME/Library/Android/sdk"
+  PATH="$ANDROID_HOME/emulator:$PATH"
+  PATH="$ANDROID_HOME/tools:$PATH"
+  PATH="$ANDROID_HOME/tools/bin:$PATH"
+  PATH="$ANDROID_HOME/platform-tools:$PATH"
+fi
+
+# Pipenv
+export PIPENV_VENV_IN_PROJECT=1
+export PIPENV_IGNORE_VIRTUALENVS=1
+
+# Poetry
+[ -d "$HOME/.poetry/bin" ] && PATH="$HOME/.poetry/bin:$PATH"
+export POETRY_VIRTUALENVS_IN_PROJECT=true
+
+# Python
+[ -d "$(brew --prefix python)/libexec/bin" ] && PATH="$(brew --prefix python)/libexec/bin:$PATH"
+
+# asdf
+type brew &>/dev/null && [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ] &&
+  . "$(brew --prefix asdf)/libexec/asdf.sh"
+
+# Flutter
+type asdf &>/dev/null &&
+  export FLUTTER_ROOT="$(asdf where flutter)"
+
+# Yarn
+type yarn &>/dev/null && PATH="$(yarn global bin):$PATH"
