@@ -2,11 +2,12 @@
 export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 
 # Homebrew
+ls -A /Library/Developer/CommandLineTools/usr/bin &>/dev/null || xcode-select --install
 type /opt/homebrew/bin/brew &>/dev/null && eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Node
-[ -d "$HOME/.nodenv/bin" ] && PATH="$HOME/.nodenv/bin:$PATH"
-type nodenv &>/dev/null && eval "$(nodenv init -)"
+# Java
+[ -d "$(brew --prefix openjdk)/bin" ] && PATH="$(brew --prefix openjdk)/bin:$PATH"
+type /usr/libexec/java_home &>/dev/null && export JAVA_HOME="$(/usr/libexec/java_home)"
 
 # Flutter
 type ghq &>/dev/null && [ -d "$(ghq root)/github.com/flutter/flutter/bin" ] &&
@@ -33,15 +34,20 @@ export POETRY_VIRTUALENVS_IN_PROJECT=true
 [ -d "$(brew --prefix python)/libexec/bin" ] && PATH="$(brew --prefix python)/libexec/bin:$PATH"
 
 # asdf
-type brew &>/dev/null && [ -f "$(brew --prefix asdf)/libexec/asdf.sh" ] &&
-  . "$(brew --prefix asdf)/libexec/asdf.sh"
+export ASDF_DATA_DIR="$HOME/.asdf"
+PATH="$ASDF_DATA_DIR/shims:$(brew --prefix asdf)/bin:$PATH"
 
 # Flutter
-type asdf &>/dev/null &&
+if type asdf &>/dev/null && asdf where flutter &>/dev/null; then
   export FLUTTER_ROOT="$(asdf where flutter)"
+fi
 
 # Yarn
-type yarn &>/dev/null && PATH="$(yarn global bin):$PATH"
+if type yarn &>/dev/null; then
+  yarn_global_path="$(yarn global bin)"
+  [[ ":$PATH:" != *"$yarn_global_path"* ]] && PATH="$yarn_global_path:$PATH"
+  unset yarn_global_path
+fi
 
 if [ -n "$BASH_VERSION" ]; then
   if [ -f "$HOME/.bashrc" ]; then

@@ -14,7 +14,7 @@
     ignorecase = false
     symlinks = true
 [init]
-    defaultBranch = master
+    defaultBranch = main
 [merge]
     ff = false
 [pull]
@@ -23,5 +23,4 @@
     default = simple
 [user]
     email = 29905556+gorbyr@users.noreply.github.com
-    name = yan
-    username = gorbyr
+    name = gorbyr
