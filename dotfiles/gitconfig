@@ -5,6 +5,8 @@
     logg = log --graph --pretty=oneline
 [color]
     ui = auto
+[commit]
+    template = ~/.gitmessage
 [core]
     autocrlf = input
     editor = emacs
