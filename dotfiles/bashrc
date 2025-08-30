@@ -30,12 +30,6 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# ngrok
-type ngrok &>/dev/null && eval "$(ngrok completion)" || true
-
-# pnpm
-[ -f "$HOME/.config/tabtab/bash/__tabtab.bash" ] && . "$HOME/.config/tabtab/bash/__tabtab.bash" || true
-
 # prompt
 __prompt_command() {
   # get the status first of all
